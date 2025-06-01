@@ -11,15 +11,12 @@ import torch.nn.functional as F
 
 app = FastAPI()
 
-origins = [            
-    "https://prateek-1.vercel.app",     
-]
 
 # Allow frontend access
 app.add_middleware(
     CORSMiddleware,
     # allow_origins=["http://localhost:5173"],
-    allow_origins=origins,
+    allow_origins=["https://prateek-1.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
