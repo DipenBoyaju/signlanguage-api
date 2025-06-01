@@ -19,7 +19,7 @@ app.add_middleware(
     allow_origins=["https://prateek-1.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 class ImageData(BaseModel):
