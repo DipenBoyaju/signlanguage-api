@@ -15,8 +15,7 @@ app = FastAPI()
 # Allow frontend access
 app.add_middleware(
     CORSMiddleware,
-    # allow_origins=["http://localhost:5173"],
-    allow_origins=["https://prateek-1.vercel.app"],
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
@@ -80,5 +79,6 @@ async def predict_sign(data: ImageData):
         raise HTTPException(status_code=400, detail=f"Error processing image: {str(e)}")
 
 @app.get("/")
+
 async def root():
     return {"message": "Sign Language Recognition Backend"}
