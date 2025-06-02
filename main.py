@@ -28,7 +28,7 @@ class ImageData(BaseModel):
 device = torch.device('cpu')
 model = EfficientNet.from_name('efficientnet-b0')
 model._fc = torch.nn.Linear(model._fc.in_features, 4)
-model.load_state_dict(torch.load('model/sign_language_model (1).pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('model/sign_language_model.pth', map_location=torch.device('cpu')))
 model.eval()
 
 transform = transforms.Compose([
