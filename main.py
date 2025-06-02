@@ -8,6 +8,7 @@ import torch
 from efficientnet_pytorch import EfficientNet
 import torchvision.transforms as transforms
 import torch.nn.functional as F
+from fastapi import Response
 
 app = FastAPI()
 
@@ -82,3 +83,7 @@ async def predict_sign(data: ImageData):
 
 async def root():
     return {"message": "Sign Language Recognition Backend"}
+
+@app.head("/")
+async def head_root():
+    return Response(status_code=200)
