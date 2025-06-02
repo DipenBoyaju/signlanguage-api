@@ -74,7 +74,6 @@ async def predict_sign(data: ImageData):
                 "message": "Prediction successful!",
                 "audio": f"/Audio/{audio_filename}.mp3"
             }
-        print(f"Inference time: {time.time() - start:.2f}s")
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error processing image: {str(e)}")
