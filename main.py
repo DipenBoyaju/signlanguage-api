@@ -98,17 +98,20 @@ async def predict_sign(data: ImageData):
             confidence, predicted = torch.max(probabilities, 0)
             confidence_score = confidence.item() * 100
 
+            # Include confidence score in the response
             if confidence_score < 80:
                 result = {
                     "sign": "",
-                    "message": "Sign not recognized—please try one of the supported signs!"
+                    "message": "Sign not recognized—please try one of the supported signs!",
+                    "confidence": confidence_score
                 }
             else:
                 predicted_class = class_map[predicted.item()]
                 result = {
                     "sign": predicted_class["label"],
                     "message": "Prediction successful!",
-                    "audio": f"/Audio/{predicted_class['audio']}.mp3"
+                    "audio": f"/Audio/{predicted_class['audio']}.mp3",
+                    "confidence": confidence_score
                 }
 
             prediction_cache[image_hash] = result
