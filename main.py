@@ -9,6 +9,8 @@ from efficientnet_pytorch import EfficientNet
 import torchvision.transforms as transforms
 import torch.nn.functional as F
 from fastapi import Response
+from fastapi.responses import JSONResponse
+from fastapi.requests import Request
 
 app = FastAPI()
 
@@ -79,6 +81,12 @@ async def predict_sign(data: ImageData):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error processing image: {str(e)}")
+
+
+@app.options("/predict")
+async def options_predict(request: Request):
+    return JSONResponse(content={}, status_code=200)
+
 
 @app.get("/")
 
