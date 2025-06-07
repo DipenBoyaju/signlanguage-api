@@ -9,18 +9,25 @@ from efficientnet_pytorch import EfficientNet
 import torchvision.transforms as transforms
 import torch.nn.functional as F
 from fastapi import Response
-from fastapi.responses import JSONResponse
-from fastapi.requests import Request
 
 app = FastAPI()
 
 # Allow frontend access
+# app.add_middleware(
+#     CORSMiddleware,
+#     # allow_origins=["http://localhost:5173"],
+#     # allow_origins=["https://prateek-1.vercel.app"],
+#     allow_origins=["https://e2fc0427.sitepreview.org"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"]
+# )
+
+
 app.add_middleware(
     CORSMiddleware,
-    # allow_origins=["http://localhost:5173"],
-    # allow_origins=["https://prateek-1.vercel.app"],
-    allow_origins=["https://e2fc0427.sitepreview.org"],
-    allow_credentials=True,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=False,  # Cannot use allow_credentials=True with allow_origins=["*"]
     allow_methods=["*"],
     allow_headers=["*"]
 )
@@ -81,11 +88,6 @@ async def predict_sign(data: ImageData):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error processing image: {str(e)}")
-
-
-@app.options("/predict")
-async def options_predict(request: Request):
-    return JSONResponse(content={}, status_code=200)
 
 
 @app.get("/")
