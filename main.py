@@ -21,12 +21,12 @@ app = FastAPI()
 # Allow frontend origin
 app.add_middleware(
     CORSMiddleware,
-    # allow_origins=["http://prateekinnovations.com"],
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "http://prateekinnovations.com"],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Input model
 class ImageData(BaseModel):
