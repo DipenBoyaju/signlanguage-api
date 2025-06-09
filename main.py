@@ -23,8 +23,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://prateekinnovations.com"],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type"]
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Input model
@@ -125,3 +125,4 @@ async def health_check():
         "status": "ok",
         "timestamp": time.time()
     }
+
