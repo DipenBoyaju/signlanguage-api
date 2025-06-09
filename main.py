@@ -78,7 +78,7 @@ def decode_base64_image(image_base64: str) -> Image.Image:
     image_data = base64.b64decode(image_base64)
     return Image.open(io.BytesIO(image_data)).convert('RGB')
 
-@app.post("/predict")
+@app.post("/predict",methods=["POST", "OPTIONS"])
 async def predict_sign(data: ImageData):
     try:
         image = decode_base64_image(data.image)
