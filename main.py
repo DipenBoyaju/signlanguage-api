@@ -17,12 +17,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
-
+# http://prateekinnovations.com
 # Allow frontend origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://prateekinnovations.com"],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"]
 )
