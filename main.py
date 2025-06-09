@@ -17,14 +17,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
-# http://prateekinnovations.com
+
 # Allow frontend origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://prateekinnovations.com"],
     allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"]
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"]
 )
 
 # Input model
@@ -78,7 +78,7 @@ def decode_base64_image(image_base64: str) -> Image.Image:
     image_data = base64.b64decode(image_base64)
     return Image.open(io.BytesIO(image_data)).convert('RGB')
 
-@app.post("/predict",methods=["POST", "OPTIONS"])
+@app.post("/predict")
 async def predict_sign(data: ImageData):
     try:
         image = decode_base64_image(data.image)
